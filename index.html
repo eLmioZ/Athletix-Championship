@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arena Athletix Championship 2026</title>
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Google Fonts: Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons - Menggunakan binaan UMD stabil bagi mengelakkan konflik 'Infinity' -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -194,7 +198,7 @@
                                     </button>
                                 </div>
 
-                                <!-- Baris Bawah: 2 Butang (Ditetapkan lebar 2/3 untuk saiz butang seragam) -->
+                                <!-- Baris Bawah: 2 Butang -->
                                 <div class="grid grid-cols-2 gap-1.5 w-2/3 mx-auto">
                                     <!-- Papan Pingat -->
                                     <button id="btn-keputusan" onclick="openDataViewModal('keputusan')" class="relative h-16 bg-neutral-900/95 border border-gold-500 hover:border-gold-500/50 text-white py-2 rounded-lg transition-all duration-300 hover:shadow-gold-glow flex flex-col items-center justify-center gap-1 group cursor-pointer">
@@ -311,7 +315,7 @@
                     <div class="flex items-center gap-2">
                         <i data-lucide="settings" class="w-4 h-4 text-gold-400"></i>
                         <div>
-                            <h3 id="text-admin-panel-title" class="text-xs font-bold text-white uppercase tracking-wider">PANEL KAWALAN PENTADBIE</h3>
+                            <h3 id="text-admin-panel-title" class="text-xs font-bold text-white uppercase tracking-wider">PANEL KAWALAN PENTADBIR</h3>
                             <p id="text-admin-panel-subtitle" class="text-[8px] text-neutral-500 uppercase">Mod Suntingan Simpanan Real-Time</p>
                         </div>
                     </div>
@@ -402,7 +406,7 @@
         <!-- FOOTER -->
         <footer class="bg-black py-6 border-t border-gold-500/10 shrink-0">
             <div class="text-center text-gold-400/80 font-bold tracking-widest text-[9px] sm:text-xs uppercase">
-                ALL RIGHT REVERSED @ 2026 eL_mioZ Designer
+                ALL RIGHTS RESERVED @ 2026 eL_mioZ Designer
             </div>
         </footer>
 
@@ -425,15 +429,15 @@
                 console.error("Gagal membaca __firebase_config:", e);
             }
         } else {
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            const firebaseConfig = {
-            apiKey: "AIzaSyBLDLlZdC2dFZ7wAcW93n-cFAHycW3mm0g",
-            authDomain: "athletix-championship-e2d5c.firebaseapp.com",
-            projectId: "athletix-championship-e2d5c",
-            storageBucket: "athletix-championship-e2d5c.firebasestorage.app",
-            messagingSenderId: "696108056843",
-            appId: "1:696108056843:web:2e23417b57ee2b69a7a20e",
-            measurementId: "G-SDE48B3ESB"
+            // Memperbaiki ralat global assignment supaya variable skop induk ditukar terus
+            firebaseConfig = {
+                apiKey: "AIzaSyBLDLlZdC2dFZ7wAcW93n-cFAHycW3mm0g",
+                authDomain: "athletix-championship-e2d5c.firebaseapp.com",
+                projectId: "athletix-championship-e2d5c",
+                storageBucket: "athletix-championship-e2d5c.firebasestorage.app",
+                messagingSenderId: "696108056843",
+                appId: "1:696108056843:web:2e23417b57ee2b69a7a20e",
+                measurementId: "G-SDE48B3ESB"
             };
         }
 
@@ -484,7 +488,7 @@
             drive: "https://drive.google.com/drive/folders/your-folder-id", 
             peraturan: "https://heyzine.com/flip-book/your-book-id", 
             form: "https://docs.google.com/forms/d/e/your-form-id/viewform", 
-            aboutUs: "Portal rasmi keputusan kejohanan olahraga tahunan SK Bukit Kallam. Semua keputusan adalah disegerakkan terus daripada Google Sheets penganjur." 
+            aboutUs: "Portal rasmi keputusan kejohanan olahraga tahunan SK Bukit Kalam. Semua keputusan adalah disegerakkan terus daripada Google Sheets penganjur." 
         };
 
         const DEFAULT_ARENA_DATA = {
@@ -574,9 +578,7 @@
             aboutUs: "" 
         };
 
-
         // Menyimpan konfigurasi ke Firebase Firestore (Menggantikan localStorage)
-        // Menggunakan Path Sesuai Aturan 1: /artifacts/{appId}/public/data/{collectionName}
         window.saveToLocalStorage = async function() {
             if (!window.db || !window.auth.currentUser) {
                 console.warn("Autentikasi Firebase belum sedia.");
@@ -597,7 +599,6 @@
         };
 
         // Memuat konfigurasi daripada Firebase Firestore (Menggantikan localStorage)
-        // Mendaftar OnSnapshot Listener untuk sinkronisasi masa nyata (Real-time Live sync)
         window.loadFromLocalStorage = async function() {
             await window.firebaseAuthPromise;
 
@@ -668,7 +669,7 @@
             registerListener('mediaLinks', (val) => { window.mediaLinks = val; });
         };
 
-        // Menyimpan dan memuat bahasa pilihan pengguna terus ke Firebase Private settings (Menggantikan localStorage)
+        // Menyimpan dan memuat bahasa pilihan pengguna
         window.activeLang = 'ms';
 
         async function loadLanguagePreference() {
@@ -794,7 +795,7 @@
                 linkDrive: "Galeri",
                 linkReg: "Peraturan",
                 linkFeedback: "Maklum Balas",
-                footerCopyright: "All Right Reversed @ 2026 eL_mioZ Designer",
+                footerCopyright: "ALL RIGHTS RESERVED @ 2026 eL_mioZ Designer",
                 authTitle: "PENGESAHAN PENTADBIR",
                 authDesc: "Masukkan kata laluan.",
                 authBtn: "LOG MASUK",
@@ -839,7 +840,7 @@
                 langButton: "MELAYU",
                 headerSubtitle: "WELCOME TO THE OFFICIAL WEBSITE",
                 headerTitle: "ATHLETIX <span class='text-gradient-gold'>CHAMPIONSHIP 2026</span>",
-                heroTitle: "ANNUAL <span class='text-gradient-gold'>SPORTS CHAMPIONSHIP 2026</span> SEKOLAH KEBANGSAAN BUKIT KALAM<br><span class='text-xs sm:text-sm mt-3 block font-semibold text-neutral-300'>STRENGTH - DISCIPILNE - <span class='text-gradient-gold'>VICTORY</span>.</span>",
+                heroTitle: "ANNUAL <span class='text-gradient-gold'>SPORTS CHAMPIONSHIP 2026</span> SEKOLAH KEBANGSAAN BUKIT KALAM<br><span class='text-xs sm:text-sm mt-3 block font-semibold text-neutral-300'>STRENGTH - DISCIPLINE - <span class='text-gradient-gold'>VICTORY</span>.</span>",
                 heroDescription: "Displays official results, schedules, and live tournament information, designed to provide an authentic athletics tournament experience.",
                 menuLabel: "MAIN MENU",
                 btnAcara: "Schedule",
@@ -853,7 +854,7 @@
                 linkDrive: "Gallery",
                 linkReg: "Regulations",
                 linkFeedback: "Feedback",
-                footerCopyright: "All Right Reversed @ 2026 eL_mioZ Designer",
+                footerCopyright: "ALL RIGHTS RESERVED @ 2026 eL_mioZ Designer",
                 authTitle: "ADMIN VERIFICATION",
                 authDesc: "Please enter your password.",
                 authBtn: "LOGIN",
@@ -909,7 +910,6 @@
             setHtml('lang-switch-btn', dict.langButton);
             setHtml('text-portal-subtitle', dict.headerSubtitle);
             setHtml('text-portal-title', dict.headerTitle);
-            setHtml('text-hero-badge', dict.heroBadge);
             setHtml('text-hero-title', dict.heroTitle);
             setHtml('text-hero-desc', dict.heroDescription);
             setHtml('text-menu-label', dict.menuLabel);
@@ -922,7 +922,6 @@
             setHtml('text-home-medal-title', dict.homeMedalTitle);
 
             setHtml('text-quicklinks-title', dict.quicklinksTitle);
-            setHtml('text-quicklinks-subtitle', dict.quicklinksSubtitle);
             setHtml('text-link-drive', dict.linkDrive);
             setHtml('text-link-reg', dict.linkReg);
             setHtml('text-link-feedback', dict.linkFeedback);
@@ -979,8 +978,12 @@
                 document.getElementById('admin-auth-modal').classList.add('hidden');
                 
                 const icon = document.getElementById('admin-icon');
-                icon.setAttribute('data-lucide', 'lock-open');
-                lucide.createIcons();
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'lock-open');
+                }
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 
                 triggerToast(
                     window.activeLang === 'ms' ? 'Log Masuk Berjaya' : 'Access Granted',
@@ -1000,8 +1003,12 @@
             isAdminLoggedIn = false;
             closeAdminPanel();
             const icon = document.getElementById('admin-icon');
-            icon.setAttribute('data-lucide', 'lock');
-            lucide.createIcons();
+            if (icon) {
+                icon.setAttribute('data-lucide', 'lock');
+            }
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
             triggerToast(
                 window.activeLang === 'ms' ? 'Log Keluar' : 'Logged Out',
                 window.activeLang === 'ms' ? 'Mod pentadbir peranti dinyahaktifkan.' : 'Local admin mode deactivated.'
@@ -1273,7 +1280,9 @@
                     break;
             }
             fieldsContainer.innerHTML = html;
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         async function handleRecordSubmit(event) {
@@ -1511,7 +1520,9 @@
                     });
                 }
                 container.innerHTML = listHtml;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 return;
             }
 
@@ -1559,7 +1570,9 @@
                 `;
             });
             container.innerHTML = html;
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         function selectStartListGroup(key) {
@@ -1614,7 +1627,9 @@
                     break;
             }
             
-            iconEl.setAttribute('data-lucide', iconName);
+            if (iconEl) {
+                iconEl.setAttribute('data-lucide', iconName);
+            }
             titleEl.innerText = titleText;
             
             let bodyHtml = "";
@@ -1664,7 +1679,9 @@
                 }
 
                 renderAcaraList();
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 return;
             } else if (category === 'startlist') {
                 window.currentStartListSearchQuery = "";
@@ -1773,7 +1790,9 @@
             if (category === 'keputusan') {
                 switchPapanPingatSubTab('liveScoreboard');
             }
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         window.handleStartListSearch = function(query) {
@@ -1881,7 +1900,9 @@
                 </div>
                 `;
                 bodyEl.innerHTML = bodyHtml;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 return;
             }
 
@@ -1932,7 +1953,9 @@
                 }
             }
 
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
 
             if (activeGroup) {
                 renderStartListParticipants();
@@ -1983,7 +2006,9 @@
                 </div>
                 `;
                 bodyEl.innerHTML = bodyHtml;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 return;
             }
 
@@ -2056,7 +2081,9 @@
             `;
 
             bodyEl.innerHTML = bodyHtml;
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
 
             if (activeGroup) {
                 renderLiveSelectedResults();
@@ -2244,7 +2271,9 @@
                     container.innerHTML = html;
                 }
 
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
 
             } catch (err) {
                 renderLocalFallback();
@@ -2452,7 +2481,9 @@
                     container.innerHTML = html;
                 }
                 
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
 
             } catch (err) {
                 renderLocalFallback();
@@ -2617,7 +2648,7 @@
                     if (b.emas !== a.emas) return b.emas - a.emas;
                     if (b.perak !== a.perak) return b.perak - a.perak;
                     return b.gangsa - a.gangsa;
-                }).slice(0, 4);
+                });
 
                 if (sortedScoreboard.length === 0) {
                     container.innerHTML = `
@@ -2634,7 +2665,7 @@
                     <div class="w-full text-left overflow-x-auto">
                         <table class="w-full text-[10px] text-neutral-300 border border-gold-500">
                             <thead>
-                                <tr class="border-b border-gold-500 uppercase tracking-widest text-[7px] text-gold-400">
+                                <tr class="border-b border-gold-500 uppercase tracking-widest text-[7px] text-gold-400 font-bold">
                                     <th class="py-2 px-2.5 text-center">${dict.thRank}</th>
                                     <th class="py-2 px-1.5">${dict.thTeam}</th>
                                     <th class="py-2 px-1.5 text-center">${dict.thEmas}</th>
@@ -2676,7 +2707,9 @@
                 `;
 
                 container.innerHTML = tableHtml;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 return;
             }
 
@@ -2801,7 +2834,9 @@
             }
 
             container.innerHTML = displayHtml;
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         function closeDataViewModal() {
@@ -2865,7 +2900,9 @@
                         <p class="uppercase text-[8px] tracking-widest font-semibold">${dict.emptyEvents}</p>
                     </div>
                 `;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 return;
             }
 
@@ -2896,7 +2933,9 @@
             });
 
             container.innerHTML = html;
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         function getTodayMalayString() {
@@ -2940,7 +2979,8 @@
         }
 
         function updateHubButtonStyles(activeCategory) {
-            const categories = ['acara', 'senarai peserta', 'live', 'keputusan rasmi', 'media'];
+            // Memperbetulkan senarai butang kategori supaya sepadan dengan ID unik di dalam DOM
+            const categories = ['acara', 'startlist', 'live', 'keputusan', 'media'];
             categories.forEach(cat => {
                 const btn = document.getElementById(`btn-${cat}`);
                 if (!btn) return;
@@ -2971,7 +3011,9 @@
                     }
                 }
             });
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         function renderHomepageWidgets() {
@@ -2988,7 +3030,9 @@
                         <p class="uppercase text-[8px] tracking-widest font-semibold">${window.activeLang === 'en' ? 'NO NOTICES' : 'TIADA HEBAHAN'}</p>
                     </div>
                 `;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
             } else {
                 let html = "";
                 list.forEach(item => {
@@ -3006,7 +3050,9 @@
                     `;
                 });
                 listContainer.innerHTML = html;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
             }
 
             const linkDrive = document.getElementById('home-link-drive');
@@ -3037,7 +3083,9 @@
                         <p class="uppercase text-[8px] tracking-widest font-semibold">${window.activeLang === 'en' ? 'ON PROGRESS' : 'DALAM PROSES'}</p>
                     </div>
                 `;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 return;
             }
 
@@ -3081,7 +3129,9 @@
                 </div>
             `;
             container.innerHTML = html;
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         function initGoldenParticles() {
@@ -3170,7 +3220,9 @@
             await window.loadFromLocalStorage();
 
             renderHomepageWidgets();
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
             initGoldenParticles();
             
             await fetchMedalBoardFromSheets();
@@ -3211,4 +3263,3 @@
     </script>
 </body>
 </html>
-
